@@ -281,6 +281,13 @@ Além dos itens obrigatórios, neste endpoint, você poderá adicionalmente:
     - Inclua no carrinho um query parameter de cupom e retorne o carrinho com uma campo a mais de `descontos`.
     - Lembre de, claro, atualizar o total a pagar
 
+### Manipulação de Arquivos
+
+- Todas operações devem ser salvas no arquivo `data.json`, para isso você usará a biblioteca `fs` do NodeJS, essas operações são:
+    - Controle de estoque (baixar a quantide de items em cada produto);
+    - Carrinho atual;
+    - Vendas realizadas.
+
 ### Relatórios
 
 Em todo e-commerce é interessante ter relatórios de vendas. Crie novos endpoints, pensando em bons nomes e verbos que você julgar adequados, para que seja possível obter as seguintes informações:
