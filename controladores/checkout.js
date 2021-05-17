@@ -1,7 +1,7 @@
 const fs = require("fs");
 dados = fs.readFileSync("./data/data.json").toString();
 const listaProdutos = JSON.parse(dados);
-const { add } = require("date-fns");
+const { addBusinessDays } = require("date-fns");
 
 const carrinho = {
     subtotal: 0,
@@ -60,7 +60,7 @@ function atualizarCarrinho() {
         }
     );
     carrinho.subtotal = subtotal;
-    carrinho.dataDeEntrega = add(new Date(), {days: 15});
+    carrinho.dataDeEntrega = addBusinessDays(new Date(), {days: 15});
     if (carrinho.subtotal < 200*100) {
         carrinho.valorDoFrete = 50*100;
     } else {
@@ -154,7 +154,7 @@ function finalizarCompra (req, res) {
         carrinho.produtos.forEach( produto => {
             let verificar = checarEstoque(listaProdutos.produtos, produto.id);
             if (verificar.estoque < produto.quantidade) {
-                res.json( { mensagem: "Aoba!!!"});
+                res.json( { mensagem: "Quantidade pedida é superior a presente no estoque!"});
                 tudoOk = false;
             }
         });
